@@ -17,8 +17,8 @@ export default function ClientComponent() {
       }
     >
       <VoiceProvider
-        auth={{ type: "apiKey", value: String(process.env.HUME_API_KEY) }}
-        configId={String(process.env.HUME_CONFIG_KEY)}
+        auth={{ type: "apiKey", value: String(process.env.NEXT_PUBLIC_HUME_API_KEY) }}
+        configId={String(process.env.NEXT_PUBLIC_HUME_CONFIG_KEY)}
         onMessage={() => {
           if (timeout.current) {
             window.clearTimeout(timeout.current);
