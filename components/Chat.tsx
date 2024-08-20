@@ -6,11 +6,7 @@ import Controls from "./Controls";
 import StartCall from "./StartCall";
 import { ComponentRef, useRef } from "react";
 
-export default function ClientComponent({
-  accessToken,
-}: {
-  accessToken: string;
-}) {
+export default function ClientComponent() {
   const timeout = useRef<number | null>(null);
   const ref = useRef<ComponentRef<typeof Messages> | null>(null);
   
@@ -21,7 +17,8 @@ export default function ClientComponent({
       }
     >
       <VoiceProvider
-        auth={{ type: "accessToken", value: accessToken }}
+        auth={{ type: "apiKey", value: String(process.env.HUME_API_KEY) }}
+        configId={String(process.env.HUME_CONFIG_KEY)}
         onMessage={() => {
           if (timeout.current) {
             window.clearTimeout(timeout.current);
